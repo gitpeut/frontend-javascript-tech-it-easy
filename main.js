@@ -175,6 +175,8 @@ function getStockTotal(){
     return( stockTotal );
 }
 
+// for questions 1 - 3
+
 function displayResults( total, caption, className ) {
     // find the body node
     const body = document.querySelector('body');
@@ -237,6 +239,9 @@ function getSizeDiv( tv){
 
     return sizeDiv;
 }
+
+
+// show a TV in the article div
 
 function displayTV( tv ) {
     // find the content node
@@ -351,6 +356,8 @@ function deleteOldTVList(){
         delETree( alltvs[i] );
     }
 }
+
+// event handlers for the buttons
 
 function showSortOnPrice(){
     deleteOldTVList();

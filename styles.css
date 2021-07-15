@@ -10,7 +10,6 @@ body {
 h1{
     color: lightyellow;
     text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
-
     margin-left: 50px;
 }
 .stocktext{
@@ -31,7 +30,6 @@ h1{
 
 /* div for tv and the lines in the tv div */
 .tvdiv{
-/*    border: 1px solid black; */
     border: 0 none;
     display: flex;
     flex-direction: column;
@@ -41,6 +39,7 @@ h1{
     width:600px;
     border-radius: 12px;
     background-color: seashell;
+    box-shadow: 2px 2px 5px cadetblue;
 }
 
 
