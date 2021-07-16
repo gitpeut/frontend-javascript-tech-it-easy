@@ -4,53 +4,70 @@ body {
     padding-bottom: 50px;
     display: flex;
     flex-direction: column;
-    background-image: linear-gradient(to right, cornflowerblue,lightblue,cornflowerblue);
+    background-image: linear-gradient(to right, cornflowerblue, lightblue, cornflowerblue);
 }
 
-h1{
+h1 {
     color: lightyellow;
     text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
     margin-left: 50px;
 }
-.stocktext{
-    color:red;
+
+.stocktext {
+    color: red;
     font-size: 32px;
 }
 
-.salestext{
+.salestext {
     color: green;
     font-size: 48px;
 }
 
-.tvtext{
+.tvtext {
     color: black;
     font-size: 11px;
     margin-right: 70%;
 }
 
 /* div for tv and the lines in the tv div */
-.tvdiv{
+.tvdiv {
     border: 0 none;
     display: flex;
     flex-direction: column;
     justify-content: left;
     margin-top: 10px;
     padding: 10px;
-    width:600px;
+    width: 600px;
     border-radius: 12px;
     background-color: seashell;
     box-shadow: 2px 2px 5px cadetblue;
 }
 
 
-.tvdetails{
+.tvdetails {
     color: black;
     font-size: 11px;
     margin: 3px;
     width: 100%;
 }
 
-header{
+.pricedetails{
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.stockdetails{
+    font-weight: normal;
+    margin-right: 10px;
+}
+
+.btndetails {
+    font-size: 14px;
+}
+
+header {
     top: 0;
     display: flex;
     flex-direction: row;
@@ -62,7 +79,7 @@ header{
 
 }
 
-article{
+article {
     margin: 50px;
     margin-top: 10px;
     border: 0 none;
@@ -71,14 +88,16 @@ article{
     border-radius: 12px;
 }
 
-.optbutton{
+.optbutton {
     width: 100px;
     height: 50%;
     background-color: cornsilk;
     color: black;
     font-size: 9pt;
     border-radius: 12px;
+    box-shadow: 2px 2px 5px cadetblue;
 }
-.optbutton:hover{
+
+.optbutton:hover {
     background-color: white;
 }
