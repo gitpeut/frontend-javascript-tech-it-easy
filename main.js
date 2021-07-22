@@ -229,7 +229,7 @@ function setTotal( divid, header, data ) {
     document.querySelector('article').appendChild( parentdiv );
 }
 
-function showTotals(){
+async function showTotals(){
 // fill omzet, doelomzet and voorraad with values and display
 // the result using setTotal( divname, header, data )
 
@@ -411,22 +411,22 @@ function deleteOldTVList() {
 
 // event handlers for the buttons
 
-function showAllTVs() {
+async function showAllTVs() {
     deleteOldTVList();
     inventory.map(tv => displayTV(tv));
 }
 
-function showSortOnPrice() {
+async function showSortOnPrice() {
     deleteOldTVList();
     sortLowToHigh().map(tv => displayTV(tv));
 }
 
-function showAmbilight() {
+async function showAmbilight() {
     deleteOldTVList();
     getAmbilightTvs().map(tv => displayTV(tv));
 }
 
-function showUitverkocht() {
+async function showUitverkocht() {
     deleteOldTVList();
     getSoldoutTvs().map(tv => displayTV(tv));
 }
@@ -445,7 +445,7 @@ function makeButton( id, eventListener, text){
     document.querySelector('header').appendChild( button );
 }
 
-function showButtons(){
+async function showButtons(){
     makeButton( 'alltvs', showAllTVs, "Alle TV's"  );
     makeButton( 'sortprijs', showSortOnPrice, "Sorteer op prijs" );
     makeButton( 'ambilight', showAmbilight, "Alleen Ambilight" );
