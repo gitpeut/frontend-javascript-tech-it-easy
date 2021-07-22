@@ -226,7 +226,8 @@ function setTotal( divid, header, data ) {
     // add the data node to the body
     parentdiv.appendChild(datadiv);
 
-    document.querySelector('article').appendChild( parentdiv );
+//    document.querySelector('article').appendChild( parentdiv );
+    document.getElementById('totallist').appendChild( parentdiv );
 }
 
 async function showTotals(){
@@ -470,8 +471,12 @@ function showMainElements(){
     tvlist.id    = 'tvlist';
     article.appendChild( tvlist );
 
+    const totallist = document.createElement('div');
+    totallist.id    = 'totallist';
+
     body =  document.querySelector('body');
     body.appendChild( title );
+    body.appendChild( totallist );
     body.appendChild( header );
     body.appendChild( article );
 
