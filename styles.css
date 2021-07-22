@@ -83,7 +83,7 @@ header {
 article {
     width: 100%;
     display: grid;
-    grid-template-columns: 2fr 2fr;
+    grid-template-columns: 800px 200px;
     grid-template-rows: 100px 100px 100px 100px;
     grid-template-areas:
         "A B"
