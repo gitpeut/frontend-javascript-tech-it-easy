@@ -175,25 +175,84 @@ function getStockTotal() {
     return (stockTotal);
 }
 
-// for questions 1 - 3
+//Opdracht 3a: Wat is onze doel-opbrengst? Bereken wat de totale opbrengst is,
+//als we alle exemplaren van ieder type zouden verkopen. Geef dit in het blauw weer op de pagina.
 
-function displayResults(total, caption, className) {
-    // find the body node
-    const body = document.querySelector('body');
+function getSalesGoal() {
+    let salesGoal = 0;
+
+    inventory.map(tv => salesGoal += ((tv.originalStock - tv.sold) * tv.price));
+
+    return (salesGoal);
+}
+
+// Opdracht 6b: Hoeveel hebben we tot nu toe verdient? Bereken hoeveel we tot nu toe verdient
+// hebben met het aantal verkochte tv's. Geef dit weer in het groen weer op de pagina
+
+function getGrossEarnings() {
+    let grossEarnings = 0;
+
+    inventory.map(tv => grossEarnings += (tv.sold * tv.price));
+
+    return (grossEarnings);
+
+}
+
+function setTotal( divid, header, data ) {
+
+    let parentdiv = document.createElement('div');
+    parentdiv.id = divid;
+    parentdiv.setAttribute('class', 'results');
 
     // create a text node with the total
-    let stockText = document.createTextNode(caption + total);
+    let headline = document.createTextNode( header );
+    // create a div element to insert the headline in
+    let headdiv = document.createElement('div');
+    //add the textnode to the div
+    headdiv.appendChild( headline );
+    // make sure the header is black
+    headdiv.style.color = 'black';
 
-    // create a h1 element to insert the text node in,
-    // make sure it gets class className, in CSS this gets colors, etc.
-    let stockCounter = document.createElement('div');
-    stockCounter.setAttribute('class', className);
+    // create a text node with the data
+    let dataline = document.createTextNode( data );
+    // create a div element to insert the headline in
+    let datadiv = document.createElement('div');
+    //add the textnode to the div
+    datadiv.appendChild( dataline );
 
-    // add the text node to the h1 node
-    stockCounter.appendChild(stockText);
 
-    // add the h1 node to the body
-    body.appendChild(stockCounter);
+    // add the headline node to the parentdiv
+    parentdiv.appendChild(headdiv);
+    // add the data node to the body
+    parentdiv.appendChild(datadiv);
+
+    document.querySelector('article').appendChild( parentdiv );
+}
+
+function showTotals(){
+// fill omzet, doelomzet and voorraad with values and display
+// the result using setTotal( divname, header, data )
+
+    let omzet = getGrossEarnings();
+    // Dank je wel Judith.
+    omzet    = omzet.toLocaleString("nl-NL", {
+        style: 'currency',
+        currency: 'EUR'
+    });
+    setTotal( 'omzet', 'Omzet', omzet );
+
+    let goal = getSalesGoal();
+    goal    = goal.toLocaleString("nl-NL", {
+        style: 'currency',
+        currency: 'EUR'
+    });
+    setTotal( 'doelomzet', 'Verkoopdoel', goal );
+
+
+    let voorraad = getStockTotal();
+    setTotal( 'voorraad', 'Voorraad', voorraad );
+
+
 }
 
 // make a div for the brand, type and name of tv
@@ -257,11 +316,11 @@ function getSizeDiv(tv) {
 }
 
 
-// show a TV in the article div
+// show a TV in the tvlist div
 
 function displayTV(tv) {
     // find the content node
-    const listNode = document.querySelector('article');
+    const listNode = document.getElementById('tvlist');
 
     let tvdiv = document.createElement('div');
     tvdiv.setAttribute('class', 'tvdiv');
@@ -274,9 +333,10 @@ function displayTV(tv) {
     // add the divs to the tvdiv created
     tvdiv.appendChild(btnDiv);
     tvdiv.appendChild(priceDiv);
+    tvdiv.appendChild(priceDiv);
     tvdiv.appendChild(sizeDiv);
 
-    // add the tvdiv node to the body
+    // add the tvdiv node to the tvlist
     listNode.appendChild(tvdiv);
 }
 
@@ -311,16 +371,13 @@ function getAmbilightTvs() {
 function sortLowToHigh() {
     let lowToHigh = [...inventory];
 
-    console.log(lowToHigh);
+    //console.log(lowToHigh);
 
     lowToHigh = lowToHigh.sort((one, two) => {
         if (one.price < two.price) return (-1);
         if (one.price > two.price) return (1);
         if (one.price == two.price) return (0);
     });
-
-//    displayTypePrice( lowToHigh ,'sorted');
-//    displayTypePrice( inventory ,'original');
 
     return (lowToHigh);
 }
@@ -334,28 +391,6 @@ function displayTypePrice(tvArray, title) {
 
 }
 
-//Opdracht 3a: Wat is onze doel-opbrengst? Bereken wat de totale opbrengst is,
-//als we alle exemplaren van ieder type zouden verkopen. Geef dit in het blauw weer op de pagina.
-
-function getSalesGoal() {
-    let salesGoal = 0;
-
-    inventory.map(tv => salesGoal += ((tv.originalStock - tv.sold) * tv.price));
-
-    return (salesGoal);
-}
-
-// Opdracht 6b: Hoeveel hebben we tot nu toe verdient? Bereken hoeveel we tot nu toe verdient
-// hebben met het aantal verkochte tv's. Geef dit weer in het groen weer op de pagina
-
-function getGrossEarnings() {
-    let grossEarnings = 0;
-
-    inventory.map(tv => grossEarnings += (tv.sold * tv.price));
-
-    return (grossEarnings);
-
-}
 
 // remove root Node and childNodes recursively
 
@@ -376,6 +411,11 @@ function deleteOldTVList() {
 
 // event handlers for the buttons
 
+function showAllTVs() {
+    deleteOldTVList();
+    inventory.map(tv => displayTV(tv));
+}
+
 function showSortOnPrice() {
     deleteOldTVList();
     sortLowToHigh().map(tv => displayTV(tv));
@@ -391,26 +431,64 @@ function showUitverkocht() {
     getSoldoutTvs().map(tv => displayTV(tv));
 }
 
-function addButtonEvents() {
-    document.getElementById("sortprijs").addEventListener('click', showSortOnPrice);
-    document.getElementById("ambilight").addEventListener('click', showAmbilight);
-    document.getElementById("uitverkocht").addEventListener('click', showUitverkocht);
+function makeButton( id, eventListener, text){
+
+    const button = document.createElement('button');
+    button.id = id;
+    button.setAttribute('class', 'optbutton');
+    button.addEventListener('click', eventListener );
+
+    const buttonText = document.createTextNode( text );
+    button.appendChild( buttonText );
+
+
+    document.querySelector('header').appendChild( button );
 }
 
+function showButtons(){
+    makeButton( 'alltvs', showAllTVs, "Alle TV's"  );
+    makeButton( 'sortprijs', showSortOnPrice, "Sorteer op prijs" );
+    makeButton( 'ambilight', showAmbilight, "Alleen Ambilight" );
+    makeButton( 'uitverkocht', showUitverkocht, "Uitverkocht" );
+
+}
+
+
+// add the title as h1 element, the header, the article and the tvlist
+
+function showMainElements(){
+
+    const title   = document.createElement('h1');
+
+    const titleText = document.createTextNode( 'Tech it easy - Financial dashboard' );
+    title.appendChild( titleText );
+
+    const header  = document.createElement('header');
+    const article = document.createElement('article');
+
+    const tvlist = document.createElement('div');
+    tvlist.id    = 'tvlist';
+    article.appendChild( tvlist );
+
+    body =  document.querySelector('body');
+    body.appendChild( title );
+    body.appendChild( header );
+    body.appendChild( article );
+
+
+}
 
 // Geef de type-namen van twee tv's weer op de pagina. Welke tv's dat precies zijn, maakt niet zoveel uit.
 // Voor nu betekent dit dat je het appenden van de nodes twee keer moet uitschrijven, dat is niet erg!
 
 function main() {
-    // displayResults( getStockTotal(), "TV's in stock ", "stocktext"  );
-    // displayResults( getGrossEarnings(), "Sales until now \u20ac ", "salestext"  );
-    // displayResults( getSalesGoal(), "Sales to be done \u20ac ", "salestext"  );
-    //
-    // displayResults(  `type ${ inventory[0].type } `, `name  ${ inventory[0].name} `, "tvtext" );
-    // displayResults(  `type ${ inventory[1].type } `, `name  ${ inventory[1].name} `, "tvtext" );
-    addButtonEvents();
+    showMainElements();
+    // addButtonEvents();
+    showButtons();
     inventory.map(tv => displayTV(tv));
+    showTotals();
 
 }
 
 window.onload = main;
+
