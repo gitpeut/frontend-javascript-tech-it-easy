@@ -344,7 +344,6 @@ function displayTV(tv) {
 function getTvTypes() {
     let tvTypes = [];
     inventory.map(tv => tvTypes.push(tv.type));
-
     return (tvTypes);
 }
 
@@ -353,6 +352,7 @@ function getTvTypes() {
 function getSoldoutTvs() {
 
     let soldoutTvs = inventory.filter(tv => (!(tv.originalStock - tv.sold)));
+    console.log( soldoutTvs );
     return soldoutTvs
 
 }
@@ -362,6 +362,8 @@ function getSoldoutTvs() {
 function getAmbilightTvs() {
 
     let ambilightTvs = inventory.filter(tv => tv.options.ambiLight);
+    console.log( ambilightTvs );
+
     return ambilightTvs
 
 }
@@ -378,7 +380,7 @@ function sortLowToHigh() {
         if (one.price > two.price) return (1);
         if (one.price == two.price) return (0);
     });
-
+    console.log( lowToHigh );
     return (lowToHigh);
 }
 
@@ -413,6 +415,7 @@ function deleteOldTVList() {
 
 async function showAllTVs() {
     deleteOldTVList();
+    console.log( inventory );
     inventory.map(tv => displayTV(tv));
 }
 
