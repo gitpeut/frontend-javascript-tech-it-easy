@@ -1,0 +1,138 @@
+body {
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    background-image: linear-gradient(to right, darkgray, lightgray, lightgray);
+
+}
+
+h1 {
+    color: lightyellow;
+    text-shadow: 1px 1px 2px black, 0 0 25px gray, 0 0 5px gray;
+    margin-left: 80px;
+}
+
+
+/* div for tv and the lines in the tv div */
+.tvdiv {
+    border: 0 none;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-top: 10px;
+    padding: 10px;
+    width: 600px;
+    border-radius: 12px;
+    background-color: seashell;
+    box-shadow: 2px 2px 5px cadetblue;
+}
+
+
+.tvdetails {
+    color: black;
+    font-size: 11px;
+    margin: 3px;
+    width: 100%;
+}
+
+.pricedetails {
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.stockdetails {
+    font-weight: normal;
+    margin-right: 10px;
+}
+
+.btndetails {
+    font-size: 14px;
+}
+
+header {
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    margin-left: 50px;
+    width: 600px;
+
+}
+
+#totallist {
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 50px;
+    width: 600px;
+}
+
+article {
+    width: 100%;
+
+}
+
+#tvlist {
+    margin: 50px;
+    margin-top: 10px;
+    border: 0 none;
+    height: 60%;
+    max-width: 600px;
+    border-radius: 12px;
+    grid-area: A;
+}
+
+.results {
+    margin: 0px;
+    margin-top: 20px;
+    border: 0 none;
+    height: 80px;
+    padding: 5px;
+    font-size: 30px;
+    max-width: 180px;
+    min-width: 180px;
+    border-radius: 12px;
+    background-color: seashell;
+    box-shadow: 2px 2px 5px cadetblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#omzet {
+    color: green;
+    grid-area: B;
+}
+
+#doelomzet {
+    color: blue;
+    grid-area: C;
+}
+
+#voorraad {
+    color: red;
+    grid-area: D;
+}
+
+
+.optbutton {
+    width: 120px;
+    height: 50%;
+    background-color: cornsilk;
+    color: black;
+    font-size: 9pt;
+    border-radius: 12px;
+    box-shadow: 2px 2px 5px cadetblue;
+}
+
+.optbutton:hover {
+    background-color: white;
+}
