@@ -14,21 +14,6 @@ h1 {
     margin-left: 80px;
 }
 
-.stocktext {
-    color: red;
-    font-size: 32px;
-}
-
-.salestext {
-    color: green;
-    font-size: 48px;
-}
-
-.tvtext {
-    color: black;
-    font-size: 11px;
-    margin-right: 70%;
-}
 
 /* div for tv and the lines in the tv div */
 .tvdiv {
@@ -52,14 +37,14 @@ h1 {
     width: 100%;
 }
 
-.pricedetails{
+.pricedetails {
     font-weight: bold;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.stockdetails{
+.stockdetails {
     font-weight: normal;
     margin-right: 10px;
 }
@@ -95,7 +80,7 @@ article {
 
 }
 
-#tvlist{
+#tvlist {
     margin: 50px;
     margin-top: 10px;
     border: 0 none;
@@ -105,7 +90,7 @@ article {
     grid-area: A;
 }
 
-.results{
+.results {
     margin: 0px;
     margin-top: 20px;
     border: 0 none;
@@ -113,26 +98,26 @@ article {
     padding: 5px;
     font-size: 30px;
     max-width: 180px;
-    min-width:  180px;
+    min-width: 180px;
     border-radius: 12px;
-    background-color:  seashell;
+    background-color: seashell;
     box-shadow: 2px 2px 5px cadetblue;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#omzet{
+#omzet {
     color: green;
     grid-area: B;
 }
 
-#doelomzet{
+#doelomzet {
     color: blue;
     grid-area: C;
 }
 
-#voorraad{
+#voorraad {
     color: red;
     grid-area: D;
 }

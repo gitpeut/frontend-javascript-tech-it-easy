@@ -198,27 +198,27 @@ function getGrossEarnings() {
 
 }
 
-function setTotal( divid, header, data ) {
+function setTotal(divid, header, data) {
 
     let parentdiv = document.createElement('div');
     parentdiv.id = divid;
     parentdiv.setAttribute('class', 'results');
 
     // create a text node with the total
-    let headline = document.createTextNode( header );
+    let headline = document.createTextNode(header);
     // create a div element to insert the headline in
     let headdiv = document.createElement('div');
     //add the textnode to the div
-    headdiv.appendChild( headline );
+    headdiv.appendChild(headline);
     // make sure the header is black
     headdiv.style.color = 'black';
 
     // create a text node with the data
-    let dataline = document.createTextNode( data );
+    let dataline = document.createTextNode(data);
     // create a div element to insert the headline in
     let datadiv = document.createElement('div');
     //add the textnode to the div
-    datadiv.appendChild( dataline );
+    datadiv.appendChild(dataline);
 
 
     // add the headline node to the parentdiv
@@ -226,32 +226,31 @@ function setTotal( divid, header, data ) {
     // add the data node to the body
     parentdiv.appendChild(datadiv);
 
-//    document.querySelector('article').appendChild( parentdiv );
-    document.getElementById('totallist').appendChild( parentdiv );
+    document.getElementById('totallist').appendChild(parentdiv);
 }
 
-async function showTotals(){
+async function showTotals() {
 // fill omzet, doelomzet and voorraad with values and display
 // the result using setTotal( divname, header, data )
 
     let omzet = getGrossEarnings();
     // Dank je wel Judith.
-    omzet    = omzet.toLocaleString("nl-NL", {
+    omzet = omzet.toLocaleString("nl-NL", {
         style: 'currency',
         currency: 'EUR'
     });
-    setTotal( 'omzet', 'Omzet', omzet );
+    setTotal('omzet', 'Omzet', omzet);
 
     let goal = getSalesGoal();
-    goal    = goal.toLocaleString("nl-NL", {
+    goal = goal.toLocaleString("nl-NL", {
         style: 'currency',
         currency: 'EUR'
     });
-    setTotal( 'doelomzet', 'Verkoopdoel', goal );
+    setTotal('doelomzet', 'Verkoopdoel', goal);
 
 
     let voorraad = getStockTotal();
-    setTotal( 'voorraad', 'Voorraad', voorraad );
+    setTotal('voorraad', 'Voorraad', voorraad);
 
 
 }
@@ -274,22 +273,22 @@ function getPriceDiv(tv) {
     let priceDiv = document.createElement('div');
     priceDiv.setAttribute('class', 'tvdetails pricedetails');
 
-    let pDiv = document.createElement( 'div' );
+    let pDiv = document.createElement('div');
 //    pDiv.setAttribute('class', 'tvdetails pricedetails');
     pDiv.innerHTML = "\u20ac" + tv.price + ",-";
 
-    let sDiv = document.createElement( 'div');
+    let sDiv = document.createElement('div');
     sDiv.setAttribute('class', ' stockdetails');
-    sDiv.innerHTML = "voorraad: " + ( tv.originalStock - tv.sold ) + "/" + tv.originalStock  ;
+    sDiv.innerHTML = "voorraad: " + (tv.originalStock - tv.sold) + "/" + tv.originalStock;
 
-    if ( ( tv.originalStock - tv.sold ) <= 0 ){
+    if ((tv.originalStock - tv.sold) <= 0) {
         sDiv.style.color = 'red';
-    }else{
+    } else {
         sDiv.style.color = 'green';
     }
 
-    priceDiv.appendChild( pDiv );
-    priceDiv.appendChild( sDiv );
+    priceDiv.appendChild(pDiv);
+    priceDiv.appendChild(sDiv);
 
     return priceDiv;
 }
@@ -305,7 +304,7 @@ function getSizeDiv(tv) {
     for (let i = 0; i < tv.availableSizes.length; i++) {
 
         sizeList += tv.availableSizes[i] + ' inch';
-        // round inch size to cm size
+        // round inch size (=2.54cm) to cm size
         sizeList += ' (' + Math.floor(tv.availableSizes[i] * 2.54) + ' cm) ';
         // if size is not the last size, append ' | ' to the list
         if (i != (tv.availableSizes.length - 1)) sizeList += '| ';
@@ -432,53 +431,53 @@ async function showUitverkocht() {
     getSoldoutTvs().map(tv => displayTV(tv));
 }
 
-function makeButton( id, eventListener, text){
+function makeButton(id, eventListener, text) {
 
     const button = document.createElement('button');
     button.id = id;
     button.setAttribute('class', 'optbutton');
-    button.addEventListener('click', eventListener );
+    button.addEventListener('click', eventListener);
 
-    const buttonText = document.createTextNode( text );
-    button.appendChild( buttonText );
+    const buttonText = document.createTextNode(text);
+    button.appendChild(buttonText);
 
 
-    document.querySelector('header').appendChild( button );
+    document.querySelector('header').appendChild(button);
 }
 
-async function showButtons(){
-    makeButton( 'alltvs', showAllTVs, "Alle TV's"  );
-    makeButton( 'sortprijs', showSortOnPrice, "Sorteer op prijs" );
-    makeButton( 'ambilight', showAmbilight, "Alleen Ambilight" );
-    makeButton( 'uitverkocht', showUitverkocht, "Uitverkocht" );
+async function showButtons() {
+    makeButton('alltvs', showAllTVs, "Alle TV's");
+    makeButton('sortprijs', showSortOnPrice, "Sorteer op prijs");
+    makeButton('ambilight', showAmbilight, "Alleen Ambilight");
+    makeButton('uitverkocht', showUitverkocht, "Uitverkocht");
 
 }
 
 
 // add the title as h1 element, the header, the article and the tvlist
 
-function showMainElements(){
+function showMainElements() {
 
-    const title   = document.createElement('h1');
+    const title = document.createElement('h1');
 
-    const titleText = document.createTextNode( 'Tech it easy - Financial dashboard' );
-    title.appendChild( titleText );
+    const titleText = document.createTextNode('Tech it easy - Financial dashboard');
+    title.appendChild(titleText);
 
-    const header  = document.createElement('header');
+    const header = document.createElement('header');
     const article = document.createElement('article');
 
     const tvlist = document.createElement('div');
-    tvlist.id    = 'tvlist';
-    article.appendChild( tvlist );
+    tvlist.id = 'tvlist';
+    article.appendChild(tvlist);
 
     const totallist = document.createElement('div');
-    totallist.id    = 'totallist';
+    totallist.id = 'totallist';
 
-    body =  document.querySelector('body');
-    body.appendChild( title );
-    body.appendChild( totallist );
-    body.appendChild( header );
-    body.appendChild( article );
+    body = document.querySelector('body');
+    body.appendChild(title);
+    body.appendChild(totallist);
+    body.appendChild(header);
+    body.appendChild(article);
 
 
 }
